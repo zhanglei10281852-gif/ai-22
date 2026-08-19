@@ -15,7 +15,7 @@ func RequestContext(next http.Handler) http.Handler {
 			requestID = newRequestID()
 		}
 		w.Header().Set("X-Request-ID", requestID)
-		next.ServeHTTP(w, r.WithContext(requestmeta.NewRequestScope(r.Context(), requestID)))
+		next.ServeHTTP(w, r.WithContext(requestmeta.WithRequestID(r.Context(), requestID)))
 	})
 }
 

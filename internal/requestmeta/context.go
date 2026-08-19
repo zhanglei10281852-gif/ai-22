@@ -13,14 +13,6 @@ const (
 	principalKey
 )
 
-func NewRequestScope(ctx context.Context, requestID string) context.Context {
-	if ctx == nil {
-		ctx = context.Background()
-	}
-	detached := context.WithoutCancel(ctx)
-	return context.WithValue(detached, requestIDKey, requestID)
-}
-
 func WithRequestID(ctx context.Context, requestID string) context.Context {
 	return context.WithValue(ctx, requestIDKey, requestID)
 }
